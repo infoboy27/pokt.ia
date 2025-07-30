@@ -86,6 +86,14 @@ export interface WhitelistMethods {
   // Add more properties as needed
 }
 
+export enum WhitelistType {
+  Origins = "ORIGINS",
+  Blockchains = "BLOCKCHAINS",
+  UserAgents = "USER_AGENTS",
+  Contracts = "CONTRACTS",
+  Methods = "METHODS",
+}
+
 export interface UpdateUser {
   id: string;
   // Add more properties as needed
