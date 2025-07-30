@@ -109,9 +109,10 @@ export interface AdminUpdateAccountMutationVariables {
   // Add more properties as needed
 }
 
-export interface PortalAppEnvironment {
-  id: string;
-  // Add more properties as needed
+export enum PortalAppEnvironment {
+  Production = "PRODUCTION",
+  Staging = "STAGING",
+  Development = "DEVELOPMENT",
 }
 
 export enum NotificationEventEnum {
