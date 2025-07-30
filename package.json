@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "run-s generate:types remix:dev",
-    "build": "remix:build",
+    "build": "remix vite:build",
     "build:with-types": "run-s generate:types remix:build",
     "start": "remix-serve ./build/server/index.js",
     "format": "prettier --write .",
