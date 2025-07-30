@@ -36,9 +36,25 @@ services:
       # - SENTRY_DSN=your_sentry_dsn_here
       # - FLAG_MAINTENANCE_MODE=false
       # - FLAG_STRIPE_PAYMENT=true
-      # - ADMIN_EMAIL=admin@pokt.ia
-      # - ADMIN_PASSWORD=your_admin_password_here
-      # - ADMIN_KEY=your_admin_key_here
+                        # - ADMIN_EMAIL=admin@pokt.ia
+                  # - ADMIN_PASSWORD=your_admin_password_here
+                  # - ADMIN_KEY=your_admin_key_here
+                  # Client Environment Variables
+                  # - NOVU_APP_IDENTIFIER=your_novu_app_identifier_here
+                  # - PORTAL_API_URL=https://backend.staging.portal.pokt.network
+                  # - RELAY_METER_API_URL=your_relay_meter_api_url_here
+                  # - GOOGLE_ANALYTICS_ID=your_google_analytics_id_here
+                  # - FLAG_ENTERPRISE=false
+                  # - FLAG_INFLUX_RELAY_ERROR=false
+                  # - FLAG_LEGACY_MESSAGING=false
+                  # - FLAG_MAINTENANCE_MODE_DASHBOARD=false
+                  # - FLAG_MULTI_LANGUAGE=false
+                  # - FLAG_ANNOUNCEMENT_ALERT=false
+                  # - ANNOUNCEMENT_ALERT_TITLE=your_announcement_title_here
+                  # - ANNOUNCEMENT_ALERT_BODY=your_announcement_body_here
+                  # - GODMODE_ACCOUNTS=your_godmode_accounts_here
+                  # - VERCEL_ENV=development
+                  # - DOCS_STATUS=your_docs_status_here
     volumes:
       - .:/app
       - /app/node_modules
