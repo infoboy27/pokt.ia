@@ -95,8 +95,8 @@ Or set them directly in the `docker-compose.yml` file.
    ```
 
 4. **Access the application:**
-   - Development: http://localhost:3000
-   - Production: http://localhost:3000
+   - Development: http://localhost:3001
+- Production: http://localhost:3001
 
 ## Deployment
 
@@ -149,7 +149,7 @@ Afterwards, start the Remix development server like so:
 pnpm dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
+Open up [http://localhost:3001](http://localhost:3001) and you should be ready to go!
 
 If you're used to using the `vercel dev` command provided by [Vercel CLI](https://vercel.com/cli) instead, you can also use that, but it's not needed.
 
@@ -168,7 +168,7 @@ stripe login
 Then run the following to start forwarding webhooks:
 
 ```sh
-stripe --api-key {STRIPE_API_KEY} listen --forward-to http://localhost:3000/api/stripe/webhook
+stripe --api-key {STRIPE_API_KEY} listen --forward-to http://localhost:3001/api/stripe/webhook
 ```
 
 It is generally recommended to use the test mode Stripe API key for forwarding webhooks, as this will not create any real subscriptions or charge any real money.

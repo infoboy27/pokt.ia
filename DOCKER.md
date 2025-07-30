@@ -50,8 +50,8 @@ docker-compose up --build
 
 ### 4. Access the Application
 
-- **Development**: http://localhost:3000
-- **Production**: http://localhost:3000
+- **Development**: http://localhost:3001
+- **Production**: http://localhost:3001
 
 ## Available Commands
 
@@ -114,11 +114,11 @@ The following environment variables need to be configured in your `.env` file:
 ```bash
 # Node Environment
 NODE_ENV=development
-PORT=3000
+PORT=3001
 
 # Auth0 Configuration
 AUTH0_SECRET=your_auth0_secret_here
-AUTH0_BASE_URL=http://localhost:3000
+AUTH0_BASE_URL=http://localhost:3001
 AUTH0_ISSUER_BASE_URL=https://your-domain.auth0.com
 AUTH0_CLIENT_ID=your_client_id_here
 AUTH0_CLIENT_SECRET=your_client_secret_here
@@ -168,7 +168,7 @@ ENABLE_NOTIFICATIONS=true
 - **Base**: Node.js 22 Alpine
 - **Package Manager**: pnpm 10.0.0
 - **Multi-stage build** for optimized production image
-- **Port**: 3000
+- **Port**: 3001
 
 ### Development Image (`Dockerfile.dev`)
 
@@ -176,7 +176,7 @@ ENABLE_NOTIFICATIONS=true
 - **Package Manager**: pnpm 10.0.0
 - **Hot reloading** enabled
 - **Volume mounting** for live code changes
-- **Port**: 3000
+- **Port**: 3001
 
 ## Docker Compose Services
 
@@ -200,8 +200,8 @@ ENABLE_NOTIFICATIONS=true
 
 1. **Port already in use**
    ```bash
-   # Check what's using port 3000
-   lsof -i :3000
+   # Check what's using port 3001
+   lsof -i :3001
    
    # Kill the process or change the port in docker-compose.yml
    ```

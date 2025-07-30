@@ -7,7 +7,7 @@ services:
       - "3001:3000"
     environment:
       - NODE_ENV=development
-      - PORT=3000
+      - PORT=3001
       # Required Environment Variables
       - SESSION_SECRET=test_session_secret_for_docker_testing_only_make_it_long_and_random_123456789
       - AUTH0_CLIENT_ID=test_client_id

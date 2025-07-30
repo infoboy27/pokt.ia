@@ -41,7 +41,7 @@ COPY --from=base /app/build ./build
 COPY --from=base /app/public ./public
 
 # Expose port
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the application
 CMD ["pnpm", "start"] 
