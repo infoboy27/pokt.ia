@@ -106,12 +106,23 @@ export interface PortalAppEnvironment {
   // Add more properties as needed
 }
 
-export interface NotificationEventEnum {
-  // Add enum values as needed
+export enum NotificationEventEnum {
+  AccountCreated = "ACCOUNT_CREATED",
+  AccountUpdated = "ACCOUNT_UPDATED",
+  AppCreated = "APP_CREATED",
+  AppUpdated = "APP_UPDATED",
+  AppDeleted = "APP_DELETED",
+  MemberInvited = "MEMBER_INVITED",
+  MemberJoined = "MEMBER_JOINED",
+  MemberLeft = "MEMBER_LEFT",
+  PlanUpgraded = "PLAN_UPGRADED",
+  PlanDowngraded = "PLAN_DOWNGRADED",
 }
 
-export interface NotificationType {
-  // Add enum values as needed
+export enum NotificationType {
+  Email = "EMAIL",
+  Push = "PUSH",
+  InApp = "IN_APP",
 }
 
 export enum SortOrder {
@@ -119,16 +130,16 @@ export enum SortOrder {
   Desc = "DESC",
 }
 
-export interface Maybe<T> {
-  // Add more properties as needed
-}
+export type Maybe<T> = T | null | undefined;
 
 export interface BlockchainsQuery {
   // Add more properties as needed
 }
 
-export interface D2LogType {
-  // Add enum values as needed
+export enum D2LogType {
+  ErrorLogs = "ERROR_LOGS",
+  NoErrorLogs = "NO_ERROR_LOGS",
+  AllLogs = "ALL_LOGS",
 }
 
 // Enums
