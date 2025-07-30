@@ -42,6 +42,21 @@ docker-compose -f docker-compose.dev.yml up --build
 docker-compose -f docker-compose.dev.yml up -d --build
 ```
 
+### Using Makefile (Recommended)
+
+```sh
+# Show all available commands
+make help
+
+# Development
+make dev              # Start development environment
+make dev-detach       # Start development environment in background
+
+# Production
+make prod             # Start production environment
+make prod-detach      # Start production environment in background
+```
+
 ### Environment Variables
 
 Create a `.env` file in the root directory with your environment variables:
@@ -55,6 +70,33 @@ nano .env
 ```
 
 Or set them directly in the `docker-compose.yml` file.
+
+## Quick Start
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/infoboy27/pokt.ia.git
+   cd pokt.ia
+   ```
+
+2. **Set up environment variables:**
+   ```bash
+   cp env.example .env
+   # Edit .env with your configuration
+   ```
+
+3. **Run with Docker:**
+   ```bash
+   # Development (recommended for local development)
+   make dev
+   
+   # Production
+   make prod
+   ```
+
+4. **Access the application:**
+   - Development: http://localhost:3000
+   - Production: http://localhost:3000
 
 ## Deployment
 
