@@ -16,7 +16,7 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 # Copy source code
 COPY . .
 
-# Build the application
+# Build the application (skip GraphQL type generation for Docker builds)
 RUN pnpm run build
 
 # Production stage
