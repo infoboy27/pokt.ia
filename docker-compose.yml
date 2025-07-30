@@ -37,10 +37,11 @@ services:
       - DOCS_STATUS=test_docs_status
       - FLAG_MAINTENANCE_MODE=false
       - FLAG_STRIPE_PAYMENT=false
+      # Stripe Environment Variables (Required even when disabled)
+      - STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+      - STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret_here
+      - STRIPE_PRICE_ID=price_your_stripe_price_id_here
       # Optional Environment Variables (commented out for testing)
-      # - STRIPE_SECRET_KEY=your_stripe_secret_key
-      # - STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
-      # - STRIPE_PRICE_ID=your_stripe_price_id
       # - NOVU_API_KEY=your_novu_api_key
       # - NOVU_APP_ID=your_novu_app_id
       # - UPSTASH_REDIS_REST_URL=your_upstash_redis_url
