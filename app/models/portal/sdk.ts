@@ -46,9 +46,9 @@ export interface D2StatsDuration {
   // Add more properties as needed
 }
 
-export interface D2StatsView {
-  id: string;
-  // Add more properties as needed
+export enum D2StatsView {
+  ChainId = "CHAIN_ID",
+  ApplicationId = "APPLICATION_ID",
 }
 
 export interface D2Log {
