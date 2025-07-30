@@ -559,19 +559,19 @@ export const accountMockData: Account = {
   users: [
     {
       id: "667ba247",
-      email: "rabee+3@grove.city",
+      email: "rabee+3@pokt.ia",
       roleName: RoleName.Admin,
       accepted: true,
     },
     {
       id: "200bb0c2",
-      email: "rabee+1@grove.city",
+      email: "rabee+1@pokt.ia",
       roleName: RoleName.Member,
       accepted: false,
     },
     {
       id: "3c003c04",
-      email: "rabee@grove.city",
+      email: "rabee@pokt.ia",
       roleName: RoleName.Owner,
       accepted: true,
     },

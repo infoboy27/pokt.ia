@@ -45,5 +45,5 @@ export const groupBy = (array: any[], key: string) => {
   }, {}) // empty object is the initial value for result object
 }
 
-export const DISCORD_PATH = "https://discord.gg/build-with-grove"
-export const DOCS_PATH = "https://docs.grove.city"
+export const DISCORD_PATH = "https://discord.gg/pokt"
+export const DOCS_PATH = "https://docs.pokt.network"

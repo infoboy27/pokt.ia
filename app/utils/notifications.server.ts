@@ -104,7 +104,7 @@ const getAccountNotificationPayload = ({
           )}`,
           withCta: true,
           ctaText: "Accept Invitation",
-          ctaLink: "https://portal.grove.city/user/accounts",
+          ctaLink: "https://portal.pokt.ia/user/accounts",
         }
       } else if (target === "actor") {
         return {
@@ -180,7 +180,7 @@ const getAccountNotificationPayload = ({
         )}`,
         withCta: true,
         ctaText: "Accept Invitation",
-        ctaLink: "https://portal.grove.city/user/accounts",
+        ctaLink: "https://portal.pokt.ia/user/accounts",
       }
     case "leave":
       return {

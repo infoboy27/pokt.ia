@@ -67,7 +67,7 @@ const drawerExternalLinks = [
     icon: <Smile size={18} />,
     withDivider: true,
   },
-  { label: "About Grove", to: "https://grove.city/", icon: <Leaf size={18} /> },
+          { label: "About POKT.ia", to: "https://pokt.network/", icon: <Leaf size={18} /> },
   {
     label: "Join the conversation",
     to: DISCORD_PATH,

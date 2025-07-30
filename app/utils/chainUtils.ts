@@ -162,7 +162,7 @@ export const getAppEndpointUrl = (
     env = "town"
   }
 
-  return `https://${chain?.blockchain}.rpc.grove.${env}/v1/${appId}`
+  return `https://${chain?.blockchain}.rpc.pokt.${env}/v1/${appId}`
 }
 
 export const getChainName = ({

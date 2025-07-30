@@ -3,7 +3,7 @@ import { Link, useParams } from "@remix-run/react"
 import { Plus } from "lucide-react"
 import React, { useMemo } from "react"
 import AccountSelect from "~/components/AccountSelect"
-import GroveLogo from "~/components/GroveLogo"
+import POKTLogo from "~/components/POKTLogo"
 import {
   ExternalLink,
   InternalLink,
@@ -128,7 +128,7 @@ export const Sidebar = ({ account, userRole, accounts, toggle }: SidebarProps) =
       </ScrollArea>
       <Box ml={10}>
         <Link to={`/account/${accountId}`}>
-          <GroveLogo />
+          <POKTLogo />
         </Link>
       </Box>
     </AppShell.Navbar>

@@ -1,1 +1,1 @@
-export const seo_title_append = "| Grove"
+export const seo_title_append = "| POKT.ia"

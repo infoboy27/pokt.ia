@@ -59,9 +59,9 @@ export default function EmailVerification() {
           }}
         >
           <img
-            alt="Grove logo"
+            alt="POKT.ia logo"
             loading="lazy"
-            src="portal_logo/grove-light.svg"
+            src="portal_logo/pokt-light.svg"
             style={{
               maxHeight: "65px",
               maxWidth: "100%",

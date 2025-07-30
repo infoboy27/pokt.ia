@@ -1,6 +1,6 @@
 <div align="center">
-<h1>Grove Portal UI</h1>
-<img src="https://storage.googleapis.com/grove-brand-assets/Presskit/Logo%20Joined-2.png" alt="Grove logo" width="500"/>
+<h1>POKT.ia Portal</h1>
+<img src="https://pokt.network/wp-content/uploads/2021/04/POKT-Logo-Color.png" alt="POKT.ia logo" width="500"/>
 </div>
 <br/>
 
@@ -20,6 +20,42 @@
 
 - [Remix Docs](https://remix.run/docs)
 
+## Run with **Docker**
+
+### Production
+
+```sh
+# Build and run the production container
+docker-compose up --build
+
+# Or run in detached mode
+docker-compose up -d --build
+```
+
+### Development
+
+```sh
+# Build and run the development container with hot reloading
+docker-compose -f docker-compose.dev.yml up --build
+
+# Or run in detached mode
+docker-compose -f docker-compose.dev.yml up -d --build
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory with your environment variables:
+
+```sh
+# Copy the example environment file
+cp env.example .env
+
+# Edit the environment variables
+nano .env
+```
+
+Or set them directly in the `docker-compose.yml` file.
+
 ## Deployment
 
 1. **Test Locally**
@@ -29,14 +65,14 @@
 2. **Test in Staging**
 
    - Create a PR into the "staging" branch.
-   - Continuous Deployment (CD) will automatically deploy to [https://staging.portal.grove.city](https://staging.portal.grove.city).
-   - eg. https://github.com/pokt-foundation/grove-portal/pull/660
+   - Continuous Deployment (CD) will automatically deploy to [https://staging.portal.pokt.ia](https://staging.portal.pokt.ia).
+   - eg. https://github.com/pokt-foundation/pokt-portal/pull/660
 
 3. **Deploy to PROD**
 
    - Create a PR from "staging" into "main".
-   - CD will automatically deploy to [https://portal.grove.city/](https://portal.grove.city).
-   - eg. https://github.com/pokt-foundation/grove-portal/pull/662
+   - CD will automatically deploy to [https://portal.pokt.ia/](https://portal.pokt.ia).
+   - eg. https://github.com/pokt-foundation/pokt-portal/pull/662
 
 4. **Test in Main**
    - Test your changes in the main environment to ensure everything is working as expected.

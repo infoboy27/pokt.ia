@@ -7,10 +7,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.portal.grove.city"
+          "value": "www.portal.pokt.ia"
         }
       ],
-      "destination": "https://portal.grove.city/:path*",
+      "destination": "https://portal.pokt.ia/:path*",
       "permanent": true
     }
   ],

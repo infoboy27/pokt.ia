@@ -22,8 +22,8 @@ export const sendEmail = async (
     Messages: [
       {
         From: {
-          Email: "portal@grove.city",
-          Name: "Grove Portal",
+              Email: "portal@pokt.ia",
+    Name: "POKT.ia Portal",
         },
         To: [
           {
@@ -43,7 +43,7 @@ export const sendEmail = async (
 export const sendTeamInviteEmail = async (email: string, account: string) => {
   return await sendEmail(
     email,
-    "You're invited to Grove Portal",
+    "You're invited to POKT.ia Portal",
     EmailTemplateID.TeamInvite,
     {
       app: account,

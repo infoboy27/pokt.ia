@@ -1,7 +1,7 @@
 import { Box, Stack, Text } from "@mantine/core"
 import React from "react"
 import { ClientOnly } from "remix-utils/client-only"
-import groveTreeAnimation from "./grove-tree.json"
+import poktTreeAnimation from "./pokt-tree.json"
 
 type PortalLoaderProps = {
   message?: string
@@ -17,13 +17,13 @@ const LOADER_SIZE = {
 const PortalLoader = ({
   message,
   size = "md",
-  loaderAnimation = groveTreeAnimation,
+      loaderAnimation = poktTreeAnimation,
 }: PortalLoaderProps) => {
   return (
     <ClientOnly
       fallback={
         <Stack align="center" justify="center">
-          <Box aria-labelledby="Grove loading animation">Loading...</Box>
+          <Box aria-labelledby="POKT.ia loading animation">Loading...</Box>
           {message && <Text> {message} </Text>}
         </Stack>
       }
@@ -73,7 +73,7 @@ function ClientSideLottie({ message, size = "md", loaderAnimation }: PortalLoade
 
   return (
     <Stack align="center" justify="center">
-      <Box aria-labelledby="Grove loading animation">
+              <Box aria-labelledby="POKT.ia loading animation">
         {lottieView || "Loading..."}
       </Box>
       {message && <Text> {message} </Text>}

@@ -1,7 +1,7 @@
 {
-  "name": "pocket-explorer",
+  "name": "pokt-portal",
   "private": true,
-  "description": "",
+  "description": "POKT.ia Portal - Your gateway to Web3 infrastructure",
   "license": "",
   "type": "module",
   "packageManager": "pnpm@10.0.0",

@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  pokt-portal-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      # Add your development environment variables here
+      # - AUTH0_SECRET=your_auth0_secret
+      # - AUTH0_BASE_URL=http://localhost:3000
+      # - AUTH0_ISSUER_BASE_URL=https://your-domain.auth0.com
+      # - AUTH0_CLIENT_ID=your_client_id
+      # - AUTH0_CLIENT_SECRET=your_client_secret
+      # - STRIPE_SECRET_KEY=your_stripe_secret_key
+      # - STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+      # - NOVU_API_KEY=your_novu_api_key
+      # - NOVU_APP_ID=your_novu_app_id
+      # - UPSTASH_REDIS_REST_URL=your_upstash_redis_url
+      # - UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
+      # - VERCEL_KV_REST_API_URL=your_vercel_kv_url
+      # - VERCEL_KV_REST_API_TOKEN=your_vercel_kv_token
+      # - VERCEL_KV_REST_API_READ_ONLY_TOKEN=your_vercel_kv_readonly_token
+      # - MAILJET_API_KEY=your_mailjet_api_key
+      # - MAILJET_API_SECRET=your_mailjet_api_secret
+      # - PORTAL_BACKEND_URL=https://backend.staging.portal.pokt.network
+      # - PORTAL_GRAPHQL_URL=https://backend.staging.portal.pokt.network/graphql
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    command: ["pnpm", "dev"] 

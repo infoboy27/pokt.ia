@@ -22,7 +22,7 @@ describe.skip("landing page tests", () => {
     cy.findByRole("banner")
       .findByRole("navigation")
       .findByRole("link", { name: /docs/i })
-      .should("have.attr", "href", "https://docs.grove.city")
+      .should("have.attr", "href", "https://docs.pokt.network")
 
     // should find 'about pocket' in navigation
     cy.findByRole("contentinfo")

@@ -40,7 +40,7 @@ const SandboxView = ({ portalApps, blockchains, userRole }: SandboxViewProps) =>
       imgSrc="/sandbox-empty-state.svg"
       imgWidth={186}
       subtitle="Use the sandbox to test RPC calls and responses. Create an application to get started."
-      title="Grove Sandbox"
+              title="POKT.ia Sandbox"
     />
   ) : (
     <Stack gap="xl">

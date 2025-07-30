@@ -9,7 +9,7 @@ import { ColorScheme } from "~/root"
 const colorSchemeStorage = createCookieSessionStorage({
   // TODO: Sign the cookie with a secret
   cookie: {
-    name: "grove_color_scheme",
+    name: "pokt_color_scheme",
     secure: true,
     // secrets: [sessionSecret],
     sameSite: "lax",
