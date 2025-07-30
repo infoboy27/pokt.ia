@@ -41,9 +41,9 @@ export interface D2Stats {
   // Add more properties as needed
 }
 
-export interface D2StatsDuration {
-  id: string;
-  // Add more properties as needed
+export enum D2StatsDuration {
+  Date = "DATE",
+  Hour = "HOUR",
 }
 
 export enum D2StatsView {
