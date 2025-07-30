@@ -41,6 +41,16 @@ export interface D2Stats {
   // Add more properties as needed
 }
 
+export interface D2StatsDuration {
+  id: string;
+  // Add more properties as needed
+}
+
+export interface D2StatsView {
+  id: string;
+  // Add more properties as needed
+}
+
 export interface D2Log {
   id: string;
   // Add more properties as needed
@@ -86,6 +96,11 @@ export interface UpdatePortalApp {
   // Add more properties as needed
 }
 
+export interface AdminUpdateAccountMutationVariables {
+  id: string;
+  // Add more properties as needed
+}
+
 export interface PortalAppEnvironment {
   id: string;
   // Add more properties as needed
@@ -99,8 +114,9 @@ export interface NotificationType {
   // Add enum values as needed
 }
 
-export interface SortOrder {
-  // Add enum values as needed
+export enum SortOrder {
+  Asc = "ASC",
+  Desc = "DESC",
 }
 
 export interface Maybe<T> {
