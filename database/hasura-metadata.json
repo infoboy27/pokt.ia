@@ -1,0 +1,126 @@
+{
+  "version": 3,
+  "sources": [
+    {
+      "name": "default",
+      "kind": "postgres",
+      "tables": [
+        {
+          "table": {
+            "name": "users",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "accounts",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "account_users",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "portal_apps",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "blockchains",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "app_blockchains",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "whitelists",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "aats",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "relay_stats",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "relay_logs",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "notifications",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "stripe_subscriptions",
+            "schema": "public"
+          }
+        },
+        {
+          "table": {
+            "name": "api_keys",
+            "schema": "public"
+          }
+        }
+      ],
+      "configuration": {
+        "connection_info": {
+          "database_url": "postgres://pokt_user:pokt_password@postgres:5432/pokt_portal",
+          "pool_settings": {
+            "max_connections": 50,
+            "idle_timeout": 180,
+            "retries": 1,
+            "pool_timeout": 360,
+            "connection_lifetime": 600
+          }
+        }
+      }
+    }
+  ],
+  "api_limits": {
+    "disabled": false,
+    "depth_limit": {
+      "global": 10,
+      "per_source": 10
+    },
+    "rate_limit": {
+      "global": {
+        "unique_params": "ip",
+        "max_reqs_per_min": 100
+      },
+      "per_source": {
+        "unique_params": "ip",
+        "max_reqs_per_min": 100
+      }
+    },
+    "node_limit": {
+      "global": 1000,
+      "per_source": 1000
+    }
+  },
+  "graphql_schema_introspection": {
+    "disabled_for_roles": ["anonymous"]
+  },
+  "rest_endpoints": []
+} 
