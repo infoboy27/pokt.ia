@@ -1,0 +1,30 @@
+import { json } from "@remix-run/node"
+import { mockAccount } from "~/models/portal/portal.data"
+import { requireUserId } from "~/utils/session.server"
+
+export async function loader({ request }: { request: Request }) {
+  // In development, we'll use mock data
+  const userId = await requireUserId(request)
+  
+  return json({
+    account: mockAccount,
+    user: {
+      id: userId,
+      email: "dev@pokt.ai",
+      name: "Development User",
+      portalUserID: "dev-portal-user-123",
+    },
+  })
+}
+
+export default function DevAccountRoute() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Development Account Dashboard</h1>
+      <p>This is a development version using mock data.</p>
+      <p>Account: {mockAccount.name}</p>
+      <p>Apps: {mockAccount.portalApps.length}</p>
+      <p>Members: {mockAccount.accountUsers.length}</p>
+    </div>
+  )
+} 

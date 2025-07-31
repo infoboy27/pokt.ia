@@ -9,46 +9,42 @@ services:
       - NODE_ENV=development
       - PORT=3001
       # Required Environment Variables
-      - SESSION_SECRET=test_session_secret_for_docker_testing_only_make_it_long_and_random_123456789
-      - AUTH0_CLIENT_ID=test_client_id
-      - AUTH0_CLIENT_SECRET=test_client_secret
-      - AUTH0_DOMAIN=test.auth0.com
-      - AUTH0_AUDIENCE=test_audience
-      - AUTH0_SCOPE=openid profile email
-      - AUTH0_CONNECTION=Username-Password-Authentication
-      - AUTH0_SECRET=test_auth0_secret
-      - AUTH0_BASE_URL=https://pokt.ai
-      - AUTH0_ISSUER_BASE_URL=https://test.auth0.com
+      - SESSION_SECRET=dev_session_secret_for_local_development_only_123456789
+      - AUTH0_CLIENT_ID=your_auth0_client_id_here
+      - AUTH0_CLIENT_SECRET=your_auth0_client_secret_here
+      - AUTH0_DOMAIN=your_auth0_domain_here
+      - AUTH0_AUDIENCE=your_auth0_audience_here
+      - AUTH0_BASE_URL=http://localhost:3001
       # Client Environment Variables (Required for app to start)
-      - NOVU_APP_IDENTIFIER=test_app_identifier
-      - PORTAL_API_URL=https://backend.staging.portal.pokt.network
-      - RELAY_METER_API_URL=https://test.relay.meter.api
-      - GOOGLE_ANALYTICS_ID=test_analytics_id
-      # Feature Flags
+      - NOVU_APP_IDENTIFIER=dev_novu_app_identifier
+      - PORTAL_API_URL=http://localhost:3001/mock-api
+      - RELAY_METER_API_URL=http://localhost:3001/mock-meter
+      - GOOGLE_ANALYTICS_ID=dev_analytics_id
+      # Feature Flags - Disable features that require backend
       - FLAG_ENTERPRISE=false
       - FLAG_INFLUX_RELAY_ERROR=false
       - FLAG_LEGACY_MESSAGING=false
       - FLAG_MAINTENANCE_MODE_DASHBOARD=false
       - FLAG_MULTI_LANGUAGE=false
       - FLAG_ANNOUNCEMENT_ALERT=false
-      - ANNOUNCEMENT_ALERT_TITLE=test_announcement_title
-      - ANNOUNCEMENT_ALERT_BODY=test_announcement_body
-      - GODMODE_ACCOUNTS=test_godmode_accounts
+      - ANNOUNCEMENT_ALERT_TITLE=dev_announcement_title
+      - ANNOUNCEMENT_ALERT_BODY=dev_announcement_body
+      - GODMODE_ACCOUNTS=dev_godmode_accounts
       - VERCEL_ENV=development
-      - DOCS_STATUS=test_docs_status
+      - DOCS_STATUS=dev_docs_status
       - FLAG_MAINTENANCE_MODE=false
       - FLAG_STRIPE_PAYMENT=false
       # Stripe Environment Variables (Required even when disabled)
-      - STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
-      - STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret_here
-      - STRIPE_PRICE_ID=price_your_stripe_price_id_here
+      - STRIPE_SECRET_KEY=sk_test_dev_stripe_key
+      - STRIPE_WEBHOOK_SECRET=whsec_dev_stripe_webhook
+      - STRIPE_PRICE_ID=prod_dev_stripe_price
       # Novu Environment Variables (Required even when disabled)
-      - NOVU_API_KEY=your_novu_api_key_here
-      - NOVU_APP_ID=your_novu_app_id_here
+      - NOVU_API_KEY=dev_novu_api_key
+      - NOVU_APP_ID=dev_novu_app_id
       # Vercel KV Environment Variables (Required even when disabled)
-      - KV_REST_API_URL=your_vercel_kv_rest_api_url_here
-      - KV_REST_API_TOKEN=your_vercel_kv_rest_api_token_here
-      - KV_REST_API_READ_ONLY_TOKEN=your_vercel_kv_rest_api_readonly_token_here
+      - KV_REST_API_URL=http://localhost:3001/mock-kv
+      - KV_REST_API_TOKEN=dev_kv_token
+      - KV_REST_API_READ_ONLY_TOKEN=dev_kv_readonly_token
       # Optional Environment Variables (commented out for testing)
       # - UPSTASH_REDIS_REST_URL=your_upstash_redis_url
       # - UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
@@ -57,14 +53,21 @@ services:
       # - VERCEL_KV_REST_API_READ_ONLY_TOKEN=your_vercel_kv_readonly_token
       # - MAILJET_API_KEY=your_mailjet_api_key
       # - MAILJET_API_SECRET=your_mailjet_api_secret
-      # - PORTAL_BACKEND_URL=https://backend.staging.portal.pokt.network
-      # - PORTAL_GRAPHQL_URL=https://backend.staging.portal.pokt.network/graphql
+      # - PORTAL_BACKEND_URL=http://localhost:3001/mock-backend
+      # - PORTAL_GRAPHQL_URL=http://localhost:3001/mock-graphql
       # - SENTRY_DSN=your_sentry_dsn_here
       # - ADMIN_EMAIL=admin@pokt.ai
       # - ADMIN_PASSWORD=your_admin_password_here
       # - ADMIN_KEY=your_admin_key_here
     volumes:
+      - ./public:/app/public
       - .:/app
       - /app/node_modules
     restart: unless-stopped
-    command: ["pnpm", "dev"] 
+    command: ["pnpm", "dev"]
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 
