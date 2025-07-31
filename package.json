@@ -9,7 +9,7 @@
     "esbuild": "0.17.19"
   },
   "scripts": {
-    "dev": "run-s generate:types remix:dev",
+    "dev": "remix:dev",
     "build": "remix vite:build",
     "build:with-types": "run-s generate:types remix:build",
     "start": "remix-serve ./build/server/*/index.js",
