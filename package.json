@@ -1,7 +1,7 @@
 {
   "name": "pokt-portal",
   "private": true,
-  "description": "POKT.ia Portal - Your gateway to Web3 infrastructure",
+  "description": "POKT.ai Portal - Your gateway to Web3 infrastructure",
   "license": "",
   "type": "module",
   "packageManager": "pnpm@10.0.0",

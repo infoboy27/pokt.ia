@@ -40,7 +40,7 @@ function POKTLogo({ icon }: POKTLogoProps) {
         fill="#D53F8C"
       />
       <text x="35" y="18" fill="#D53F8C" fontSize="16" fontWeight="bold">
-        POKT.ia
+        POKT.ai
       </text>
     </svg>
   )

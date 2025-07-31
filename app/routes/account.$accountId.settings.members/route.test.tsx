@@ -45,10 +45,10 @@ describe("/account/$accountId/settings/members", () => {
     render(<RemixStub />)
 
     await waitFor(() => {
-      expect(screen.getByText("rabee+3@pokt.ia")).toBeInTheDocument()
+      expect(screen.getByText("rabee+3@pokt.ai")).toBeInTheDocument()
     })
-    expect(screen.getByText("rabee+1@pokt.ia")).toBeInTheDocument()
-    expect(screen.getByText("rabee@pokt.ia")).toBeInTheDocument()
+    expect(screen.getByText("rabee+1@pokt.ai")).toBeInTheDocument()
+expect(screen.getByText("rabee@pokt.ai")).toBeInTheDocument()
   })
   it("handle new member invite", async () => {
     const RemixStub = createRemixStub([

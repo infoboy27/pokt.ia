@@ -7,10 +7,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.portal.pokt.ia"
+          "value": "www.portal.pokt.ai"
         }
       ],
-      "destination": "https://portal.pokt.ia/:path*",
+      "destination": "https://portal.pokt.ai/:path*",
       "permanent": true
     }
   ],

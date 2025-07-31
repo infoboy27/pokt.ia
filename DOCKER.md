@@ -1,6 +1,6 @@
-# POKT.ia Portal - Docker Setup
+# POKT.ai Portal - Docker Setup
 
-This document provides instructions for running the POKT.ia Portal using Docker and Docker Compose.
+This document provides instructions for running the POKT.ai Portal using Docker and Docker Compose.
 
 ## Prerequisites
 
@@ -123,7 +123,7 @@ AUTH0_ISSUER_BASE_URL=https://your-domain.auth0.com
 AUTH0_CLIENT_ID=your_client_id_here
 AUTH0_CLIENT_SECRET=your_client_secret_here
 
-# POKT.ia Backend Configuration
+# POKT.ai Backend Configuration
 PORTAL_BACKEND_URL=https://backend.staging.portal.pokt.network
 PORTAL_GRAPHQL_URL=https://backend.staging.portal.pokt.network/graphql
 ```

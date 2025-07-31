@@ -59,7 +59,7 @@ export default function EmailVerification() {
           }}
         >
           <img
-            alt="POKT.ia logo"
+            alt="POKT.ai logo"
             loading="lazy"
             src="portal_logo/pokt-light.svg"
             style={{

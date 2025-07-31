@@ -104,7 +104,7 @@ const getAccountNotificationPayload = ({
           )}`,
           withCta: true,
           ctaText: "Accept Invitation",
-          ctaLink: "https://portal.pokt.ia/user/accounts",
+          ctaLink: "https://portal.pokt.ai/user/accounts",
         }
       } else if (target === "actor") {
         return {
@@ -180,7 +180,7 @@ const getAccountNotificationPayload = ({
         )}`,
         withCta: true,
         ctaText: "Accept Invitation",
-        ctaLink: "https://portal.pokt.ia/user/accounts",
+        ctaLink: "https://portal.pokt.ai/user/accounts",
       }
     case "leave":
       return {

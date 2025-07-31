@@ -1,6 +1,6 @@
 <div align="center">
-<h1>POKT.ia Portal</h1>
-<img src="https://pokt.network/wp-content/uploads/2021/04/POKT-Logo-Color.png" alt="POKT.ia logo" width="500"/>
+<h1>POKT.ai Portal</h1>
+<img src="https://pokt.network/wp-content/uploads/2021/04/POKT-Logo-Color.png" alt="POKT.ai logo" width="500"/>
 </div>
 <br/>
 
@@ -75,8 +75,8 @@ Or set them directly in the `docker-compose.yml` file.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/infoboy27/pokt.ia.git
-   cd pokt.ia
+   git clone https://github.com/infoboy27/pokt.ai.git
+cd pokt.ai
    ```
 
 2. **Set up environment variables:**
@@ -107,13 +107,13 @@ Or set them directly in the `docker-compose.yml` file.
 2. **Test in Staging**
 
    - Create a PR into the "staging" branch.
-   - Continuous Deployment (CD) will automatically deploy to [https://staging.portal.pokt.ia](https://staging.portal.pokt.ia).
+   - Continuous Deployment (CD) will automatically deploy to [https://staging.portal.pokt.ai](https://staging.portal.pokt.ai).
    - eg. https://github.com/pokt-foundation/pokt-portal/pull/660
 
 3. **Deploy to PROD**
 
    - Create a PR from "staging" into "main".
-   - CD will automatically deploy to [https://portal.pokt.ia/](https://portal.pokt.ia).
+   - CD will automatically deploy to [https://portal.pokt.ai/](https://portal.pokt.ai).
    - eg. https://github.com/pokt-foundation/pokt-portal/pull/662
 
 4. **Test in Main**

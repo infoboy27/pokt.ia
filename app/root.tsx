@@ -34,7 +34,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => [
   {
     description:
-      "POKT.ia Portal, your gateway to Web3 infrastructure. The POKT.ia Portal acts as your one-stop-shop to manage, and monitor your application's connection to blockchain data.",
+      "POKT.ai Portal, your gateway to Web3 infrastructure. The POKT.ai Portal acts as your one-stop-shop to manage, and monitor your application's connection to blockchain data.",
   },
   {
     name: "robots",

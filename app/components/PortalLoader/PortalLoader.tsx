@@ -23,7 +23,7 @@ const PortalLoader = ({
     <ClientOnly
       fallback={
         <Stack align="center" justify="center">
-          <Box aria-labelledby="POKT.ia loading animation">Loading...</Box>
+          <Box aria-labelledby="POKT.ai loading animation">Loading...</Box>
           {message && <Text> {message} </Text>}
         </Stack>
       }
@@ -73,7 +73,7 @@ function ClientSideLottie({ message, size = "md", loaderAnimation }: PortalLoade
 
   return (
     <Stack align="center" justify="center">
-              <Box aria-labelledby="POKT.ia loading animation">
+              <Box aria-labelledby="POKT.ai loading animation">
         {lottieView || "Loading..."}
       </Box>
       {message && <Text> {message} </Text>}

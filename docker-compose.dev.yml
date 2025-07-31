@@ -60,7 +60,7 @@ services:
       # - PORTAL_BACKEND_URL=https://backend.staging.portal.pokt.network
       # - PORTAL_GRAPHQL_URL=https://backend.staging.portal.pokt.network/graphql
       # - SENTRY_DSN=your_sentry_dsn_here
-      # - ADMIN_EMAIL=admin@pokt.ia
+      # - ADMIN_EMAIL=admin@pokt.ai
       # - ADMIN_PASSWORD=your_admin_password_here
       # - ADMIN_KEY=your_admin_key_here
     volumes:
