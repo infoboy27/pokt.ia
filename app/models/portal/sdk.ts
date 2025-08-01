@@ -21,7 +21,94 @@ export interface User {
 export interface Account {
   id: string;
   name: string;
-  payPlanType: PayPlanType;
+  planType: PayPlanType;
+  enterpriseLimit: number;
+  monthlyUserLimit: number;
+  notifications: Array<{
+    notificationType: NotificationType;
+    notificationSettings: {
+      accountID: string;
+      type: NotificationType;
+      active: boolean;
+      destination: string;
+      trigger: string;
+      events: {
+        full: boolean;
+        half: boolean;
+        quarter: boolean;
+        signedUp: boolean;
+        threeQuarters: boolean;
+      };
+    };
+  }>;
+  users: Array<{
+    id: string;
+    email: string;
+    roleName: RoleName;
+    accepted: boolean;
+  }>;
+  accountUsers: Array<{
+    id: string;
+    email: string;
+    roleName: RoleName;
+    accepted: boolean;
+  }>;
+  partnerChainIDs: string[];
+  partnerThroughputLimit: number;
+  partnerAppLimit: number;
+  integrations: {
+    stripeSubscriptionID: string;
+    covalentAPIKeyFree: string;
+    covalentAPIKeyPaid: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  deleted: boolean;
+  portalApps: Array<{
+    id: string;
+    name: string;
+    accountID: string;
+    appEmoji: string;
+    description: string;
+    settings: {
+      appID: string;
+      environment: PortalAppEnvironment;
+      secretKey: string;
+      secretKeyRequired: boolean;
+      favoritedChainIDs: string[];
+    };
+    whitelists: {
+      origins: string[];
+      userAgents: string[];
+      blockchains: string[];
+      contracts: string[];
+      methods: string[];
+    };
+    aats: Array<{
+      protocolAppID: string;
+      aat: {
+        id: string;
+        appID: string;
+        publicKey: string;
+        address: string;
+        clientPublicKey: string;
+        signature: string;
+        version: string;
+      };
+    }>;
+    createdAt: string;
+    updatedAt: string;
+    deleted: boolean;
+  }>;
+  plan: {
+    id: string;
+    type: PayPlanType;
+    monthlyRelayLimit: number;
+    chainIDs: string[];
+    throughputLimit: number;
+    appLimit: number;
+    dailyLimit: number;
+  };
 }
 
 export interface PortalApp {
