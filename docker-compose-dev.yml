@@ -158,11 +158,18 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.poktportal-dev.rule=Host(`pokt.ai`)"
+      - "traefik.http.routers.poktportal-dev.entrypoints=websecure"
+      - "traefik.http.routers.poktportal-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.poktportal-dev.loadbalancer.server.port=3000"
+      - "traefik.http.routers.poktportal-dev.middlewares=dev-redirect@file"
 
 networks:
   default:
-    name: poktia-dev
-    external: false
+    name: traefik-network
+    external: true
 
 volumes:
   postgres_data_dev:
