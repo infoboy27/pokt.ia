@@ -1,14 +1,16 @@
+version: "3.9"
+
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: pokt-postgres
+    container_name: pokt-postgres-prod
     restart: unless-stopped
     environment:
       POSTGRES_DB: pokt_portal
       POSTGRES_USER: pokt_user
       POSTGRES_PASSWORD: pokt_password
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -20,17 +22,17 @@ services:
 
   hasura:
     image: hasura/graphql-engine:v2.33.4
-    container_name: pokt-hasura
+    container_name: pokt-hasura-prod
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://pokt_user:pokt_password@postgres:5432/pokt_portal
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
-      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
+      HASURA_GRAPHQL_DEV_MODE: "false"
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_ADMIN_SECRET: pokt_admin_secret
-      HASURA_GRAPHQL_JWT_SECRET: '{"type":"HS256", "key":"pokt_jwt_secret_key_for_development_only"}'
+      HASURA_GRAPHQL_JWT_SECRET: '{"type":"HS256", "key":"pokt_jwt_secret_key_for_production_only"}'
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
       HASURA_GRAPHQL_ENABLE_TELEMETRY: "false"
     depends_on:
@@ -44,10 +46,10 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: pokt-redis
+    container_name: pokt-redis-prod
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes
@@ -61,12 +63,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: pokt-portal-prod
+    restart: unless-stopped
     ports:
-      - "3001:3000"
+      - "127.0.0.1:3001:3000"
     environment:
       - NODE_ENV=production
-      - PORT=3001
-      - SESSION_SECRET=test_session_secret_for_docker_testing_only_make_it_long_and_random_123456789
+      - PORT=3000
+      - SESSION_SECRET=your_very_secure_session_secret_here_make_it_long_and_random_123456789
       - AUTH0_CLIENT_ID=your_auth0_client_id_here
       - AUTH0_CLIENT_SECRET=your_auth0_client_secret_here
       - AUTH0_DOMAIN=your_auth0_domain_here
@@ -74,29 +78,29 @@ services:
       - AUTH0_BASE_URL=https://pokt.ai
       - AUTH0_SCOPE=openid profile email
       - AUTH0_CONNECTION=Username-Password-Authentication
-      - AUTH0_SECRET=test_auth0_secret_for_development_only
+      - AUTH0_SECRET=your_auth0_secret_here
       - AUTH0_ISSUER_BASE_URL=https://your-domain.auth0.com
       - NOVU_APP_IDENTIFIER=your_novu_app_identifier_here
       - PORTAL_API_URL=http://localhost:8080/v1/graphql
       - RELAY_METER_API_URL=http://localhost:3001/mock-meter
-      - GOOGLE_ANALYTICS_ID=test_analytics_id
+      - GOOGLE_ANALYTICS_ID=your_analytics_id_here
       - FLAG_ENTERPRISE=false
       - FLAG_INFLUX_RELAY_ERROR=false
       - FLAG_LEGACY_MESSAGING=false
       - FLAG_MAINTENANCE_MODE_DASHBOARD=false
       - FLAG_MULTI_LANGUAGE=false
       - FLAG_ANNOUNCEMENT_ALERT=false
-      - ANNOUNCEMENT_ALERT_TITLE=test_announcement_title
-      - ANNOUNCEMENT_ALERT_BODY=test_announcement_body
-      - GODMODE_ACCOUNTS=test_godmode_accounts
-      - VERCEL_ENV=development
-      - DOCS_STATUS=test_docs_status
+      - ANNOUNCEMENT_ALERT_TITLE=your_announcement_title_here
+      - ANNOUNCEMENT_ALERT_BODY=your_announcement_body_here
+      - GODMODE_ACCOUNTS=your_godmode_accounts_here
+      - VERCEL_ENV=production
+      - DOCS_STATUS=your_docs_status_here
       - FLAG_MAINTENANCE_MODE=false
       - FLAG_STRIPE_PAYMENT=false
-      - STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
-      - STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret_here
-      - STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
-      - STRIPE_PRICE_ID=prod_SmUxO9BbmmrCOL
+      - STRIPE_SECRET_KEY=your_stripe_secret_key_here
+      - STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret_here
+      - STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key_here
+      - STRIPE_PRICE_ID=your_stripe_price_id_here
       - NOVU_API_KEY=your_novu_api_key_here
       - NOVU_APP_ID=your_novu_app_id_here
       - KV_REST_API_URL=redis://redis:6379
@@ -122,24 +126,12 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.poktportal.rule=Host(`pokt.ai`)"
-      - "traefik.http.routers.poktportal.entrypoints=websecure"
-      - "traefik.http.routers.poktportal.tls.certresolver=https-resolver"
-      - "traefik.http.services.poktportal.loadbalancer.server.port=3001"
-
-networks:
-  default:
-    name: poktia
-    external: true
 
 volumes:
   postgres_data:

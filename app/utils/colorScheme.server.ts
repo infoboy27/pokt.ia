@@ -1,17 +1,14 @@
 import { createCookieSessionStorage } from "@remix-run/node"
 import { ColorScheme } from "~/root"
+import { getRequiredServerEnvVar } from "./environment"
 
-// const sessionSecret = ""
-// if (!sessionSecret) {
-//   throw new Error("SESSION_SECRET must be set")
-// }
+const sessionSecret = getRequiredServerEnvVar("SESSION_SECRET")
 
 const colorSchemeStorage = createCookieSessionStorage({
-  // TODO: Sign the cookie with a secret
   cookie: {
     name: "pokt_color_scheme",
-    secure: true,
-    // secrets: [sessionSecret],
+    secure: process.env.NODE_ENV === "production",
+    secrets: [sessionSecret],
     sameSite: "lax",
     path: "/",
     httpOnly: true,
