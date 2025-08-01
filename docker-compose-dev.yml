@@ -168,7 +168,7 @@ services:
 networks:
   default:
     name: poktia
-    external: false
+    external: true
 
 volumes:
   postgres_data_dev:
