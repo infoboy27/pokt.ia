@@ -11,7 +11,7 @@
   "scripts": {
     "build": "remix vite:build",
     "build:with-types": "run-s generate:types remix:build",
-    "dev": "npx remix vite:dev",
+    "dev": "node ./node_modules/@remix-run/dev/dist/cli.js vite:dev",
     "start": "remix-serve ./build/server/*/index.js --host 0.0.0.0 --port 3000",
     "format": "prettier --write .",
     "generate:types": "graphql-codegen --config app/models/portal/codegen.config.yml",
