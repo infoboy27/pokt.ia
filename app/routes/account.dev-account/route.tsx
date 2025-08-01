@@ -1,10 +1,10 @@
 import { json } from "@remix-run/node"
 import { mockAccount } from "~/models/portal/portal.data"
-import { requireUserId } from "~/utils/session.server"
+import { getUserId } from "~/utils/user.server"
 
 export async function loader({ request }: { request: Request }) {
   // In development, we'll use mock data
-  const userId = await requireUserId(request)
+  const userId = await getUserId(request) || "dev-user-123"
   
   return json({
     account: mockAccount,
