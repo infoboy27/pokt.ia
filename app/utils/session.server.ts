@@ -5,6 +5,7 @@ import {
   CookieSignatureOptions,
   createCookieSessionStorage,
 } from "@remix-run/node"
+import { redirect } from "@remix-run/node"
 import { getRequiredServerEnvVar } from "./environment"
 
 const cookie:
@@ -24,3 +25,27 @@ export const sessionStorage = createCookieSessionStorage({
 })
 
 export const { getSession, commitSession, destroySession } = sessionStorage
+
+export async function createUserSession({
+  request,
+  userId,
+  remember,
+  redirectTo,
+}: {
+  request: Request
+  userId: string
+  remember: boolean
+  redirectTo: string
+}) {
+  const session = await getSession(request.headers.get("Cookie"))
+  session.set("userId", userId)
+  return redirect(redirectTo, {
+    headers: {
+      "Set-Cookie": await commitSession(session, {
+        maxAge: remember
+          ? 60 * 60 * 24 * 7 // 7 days
+          : undefined,
+      }),
+    },
+  })
+}
