@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: pokt-postgres-dev
+    container_name: pokt-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: pokt_portal
@@ -20,7 +20,7 @@ services:
 
   hasura:
     image: hasura/graphql-engine:v2.33.4
-    container_name: pokt-hasura-dev
+    container_name: pokt-hasura
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -44,7 +44,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: pokt-redis-dev
+    container_name: pokt-redis
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -57,7 +57,7 @@ services:
       timeout: 5s
       retries: 5
 
-  pokt-portal-dev:
+  pokt-portal:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -160,15 +160,15 @@ services:
       start_period: 40s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.poktportal.rule=Host(`pokt.ai`)"
-      - "traefik.http.routers.poktportal.entrypoints=websecure"
-      - "traefik.http.routers.poktportal.tls.certresolver=https-resolver"
-      - "traefik.http.services.poktportal.loadbalancer.server.port=3001"
+      - "traefik.http.routers.poktportal-dev.rule=Host(`pokt.ai`)"
+      - "traefik.http.routers.poktportal-dev.entrypoints=websecure"
+      - "traefik.http.routers.poktportal-dev.tls.certresolver=https-resolver"
+      - "traefik.http.services.poktportal-dev.loadbalancer.server.port=3000"
 
 networks:
   default:
     name: poktia
-    external: true
+    external: false
 
 volumes:
   postgres_data_dev:
