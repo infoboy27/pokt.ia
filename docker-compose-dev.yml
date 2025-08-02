@@ -162,14 +162,14 @@ services:
       start_period: 40s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.poktportal-dev.rule=Host(`pokt.ai`)"
-      - "traefik.http.routers.poktportal-dev.entrypoints=websecure"
-      - "traefik.http.routers.poktportal-dev.tls.certresolver=https-resolver"
-      - "traefik.http.services.poktportal-dev.loadbalancer.server.port=3000"
+      - "traefik.http.routers.poktportal.rule=Host(`pokt.ai`)"
+      - "traefik.http.routers.poktportal.entrypoints=websecure"
+      - "traefik.http.routers.poktportal.tls.certresolver=letsencrypt"
+      - "traefik.http.services.poktportal.loadbalancer.server.port=3000"
 
 networks:
   default:
-    name: poktia
+    name: traefik-network
     external: true
 
 volumes:
