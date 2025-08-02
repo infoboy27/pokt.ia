@@ -17,7 +17,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # Install dependencies again to ensure everything is properly linked
-RUN pnpm install --frozen-lockfile --shamefully-hoist
+RUN pnpm install --frozen-lockfile --shamefully-hoist --prefer-offline
 
 # Expose port
 EXPOSE 3000
