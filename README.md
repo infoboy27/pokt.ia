@@ -184,3 +184,54 @@ You will be given a webhook signing secret, set it in your `.env` file as `STRIP
 ### Backend
 
 This currently requires you to also run the current portal backend on localhost:4200 in order to run. I am working with the backend team to whitelist localhost and enable us to hit the backend.staging.portal.pokt.network endpoints.
+
+## 🔧 Environment Variables Setup
+
+### Quick Configuration
+
+1. **Copy the environment template:**
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Update your `.env` file with your real credentials:**
+   ```bash
+   # Auth0 Configuration (REQUIRED)
+   AUTH0_CLIENT_ID=your_auth0_client_id_here
+   AUTH0_CLIENT_SECRET=your_auth0_client_secret_here
+   AUTH0_DOMAIN=your_auth0_domain_here
+   AUTH0_AUDIENCE=your_auth0_audience_here
+   
+   # Stripe Configuration
+   STRIPE_SECRET_KEY=your_stripe_secret_key_here
+   STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret_here
+   STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key_here
+   
+   # Novu Notifications
+   NOVU_API_KEY=your_novu_api_key_here
+   NOVU_APP_ID=your_novu_app_id_here
+   
+   # Vercel KV Configuration
+   KV_REST_API_URL=your_vercel_kv_url_here
+   KV_REST_API_TOKEN=your_vercel_kv_token_here
+   KV_REST_API_READ_ONLY_TOKEN=your_vercel_kv_readonly_token_here
+   ```
+
+### Docker with Environment Variables
+
+The Docker Compose files are now configured to use environment variables from your `.env` file:
+
+```bash
+# Development (uses .env file automatically)
+docker compose up --build -d
+
+# Production settings
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+### Security Features
+
+- ✅ Credentials stored in `.env` file (not committed to git)
+- ✅ Docker Compose uses environment variables
+- ✅ GitHub secret scanning protection enabled
+- ✅ Separate development and production configurations
