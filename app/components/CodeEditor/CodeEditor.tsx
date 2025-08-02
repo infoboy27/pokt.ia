@@ -3,8 +3,9 @@ import { StreamLanguage } from "@codemirror/language"
 import { shell } from "@codemirror/legacy-modes/mode/shell"
 import { linter, lintGutter } from "@codemirror/lint"
 import { Box, useMantineColorScheme } from "@mantine/core"
-import * as xcodeTheme from "@uiw/codemirror-theme-xcode"
-const { xcodeLightInit, xcodeDarkInit } = xcodeTheme
+// Use a simpler theme approach to avoid ES module issues
+import { oneDark } from "@codemirror/theme-one-dark"
+import { oneLight } from "@codemirror/theme-one-light"
 import CodeMirror from "@uiw/react-codemirror"
 import { ClientOnly } from "remix-utils/client-only"
 import CopyTextButton from "~/components/CopyTextButton"
@@ -42,19 +43,7 @@ const jsonAutoComplete = (options: AutocompleteOption[]) =>
   })
 
 const getCodeMirrorTheme = (colorScheme: ColorScheme) =>
-  colorScheme === "dark"
-    ? xcodeDarkInit({
-        settings: {
-          background: "var(--app-secondary-bg-color)",
-          gutterBackground: "var(--app-secondary-bg-color)",
-        },
-      })
-    : xcodeLightInit({
-        settings: {
-          background: "var(--app-secondary-bg-color)",
-          gutterBackground: "var(--app-secondary-bg-color)",
-        },
-      })
+  colorScheme === "dark" ? oneDark : oneLight
 
 const CodeEditor = ({
   value,
