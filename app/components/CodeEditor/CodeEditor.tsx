@@ -3,9 +3,7 @@ import { StreamLanguage } from "@codemirror/language"
 import { shell } from "@codemirror/legacy-modes/mode/shell"
 import { linter, lintGutter } from "@codemirror/lint"
 import { Box, useMantineColorScheme } from "@mantine/core"
-// Use a simpler theme approach to avoid ES module issues
-import { oneDark } from "@codemirror/theme-one-dark"
-import { oneLight } from "@codemirror/theme-one-light"
+// Use basic theme without external dependencies
 import CodeMirror from "@uiw/react-codemirror"
 import { ClientOnly } from "remix-utils/client-only"
 import CopyTextButton from "~/components/CopyTextButton"
@@ -42,8 +40,10 @@ const jsonAutoComplete = (options: AutocompleteOption[]) =>
     },
   })
 
-const getCodeMirrorTheme = (colorScheme: ColorScheme) =>
-  colorScheme === "dark" ? oneDark : oneLight
+const getCodeMirrorTheme = (colorScheme: ColorScheme) => {
+  // Use basic theme or no theme to avoid dependency issues
+  return undefined
+}
 
 const CodeEditor = ({
   value,
