@@ -13,10 +13,19 @@ export const requireUser = async (request: Request, defaultRedirect = "/") => {
   let user = await authenticator.isAuthenticated(request)
 
   if (!user) {
+    // Check if we're in development mode
+    const isDevelopment = process.env.NODE_ENV === "development"
+    if (isDevelopment) {
+      throw redirect("/dev-login")
+    }
     throw redirect("/api/auth/auth0")
   }
 
   if (!user.user) {
+    const isDevelopment = process.env.NODE_ENV === "development"
+    if (isDevelopment) {
+      throw await authenticator.logout(request, { redirectTo: "/dev-login" })
+    }
     throw await authenticator.logout(request, { redirectTo: "/api/auth/auth0" })
   }
 
@@ -25,6 +34,11 @@ export const requireUser = async (request: Request, defaultRedirect = "/") => {
   }
 
   if (!user.user.portalUserID) {
+    // In development mode, we don't have Auth0 strategy
+    const isDevelopment = process.env.NODE_ENV === "development"
+    if (isDevelopment) {
+      throw redirect("/dev-login")
+    }
     user = await authenticator.authenticate("auth0", request)
   }
 
@@ -33,6 +47,10 @@ export const requireUser = async (request: Request, defaultRedirect = "/") => {
   }>(user.accessToken)
 
   if (Date.now() >= decode.exp * 1000) {
+    const isDevelopment = process.env.NODE_ENV === "development"
+    if (isDevelopment) {
+      throw await authenticator.logout(request, { redirectTo: "/dev-login" })
+    }
     throw await authenticator.logout(request, { redirectTo: "/api/auth/auth0" })
   }
 

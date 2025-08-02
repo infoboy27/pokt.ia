@@ -32,15 +32,20 @@ export type AuthUser = {
   }
 }
 
-const auth0Strategy = new Auth0Strategy(
-  {
-    callbackURL: "/api/auth/auth0/callback",
-    clientID: getRequiredServerEnvVar("AUTH0_CLIENT_ID"),
-    clientSecret: getRequiredServerEnvVar("AUTH0_CLIENT_SECRET"),
-    domain: getRequiredServerEnvVar("AUTH0_DOMAIN"),
-    audience: getRequiredServerEnvVar("AUTH0_AUDIENCE"),
-    scope: getRequiredServerEnvVar("AUTH0_SCOPE"),
-  },
+// Only create Auth0 strategy in production
+const isDevelopment = process.env.NODE_ENV === "development"
+
+const auth0Strategy = isDevelopment 
+  ? null 
+  : new Auth0Strategy(
+      {
+        callbackURL: "/api/auth/auth0/callback",
+        clientID: getRequiredServerEnvVar("AUTH0_CLIENT_ID"),
+        clientSecret: getRequiredServerEnvVar("AUTH0_CLIENT_SECRET"),
+        domain: getRequiredServerEnvVar("AUTH0_DOMAIN"),
+        audience: getRequiredServerEnvVar("AUTH0_AUDIENCE"),
+        scope: getRequiredServerEnvVar("AUTH0_SCOPE"),
+      },
   async ({ accessToken, refreshToken, profile, extraParams }): Promise<AuthUser> => {
     const email = profile?._json?.email
     const providerUserID = profile?.id
@@ -151,5 +156,7 @@ async function handleStandardSignup(
   }
 }
 
-// Use the Auth0 strategy for authentication
-authenticator.use(auth0Strategy)
+// Use the Auth0 strategy for authentication (only in production)
+if (auth0Strategy) {
+  authenticator.use(auth0Strategy)
+}
