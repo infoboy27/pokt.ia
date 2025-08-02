@@ -3,8 +3,8 @@ import { StreamLanguage } from "@codemirror/language"
 import { shell } from "@codemirror/legacy-modes/mode/shell"
 import { linter, lintGutter } from "@codemirror/lint"
 import { Box, useMantineColorScheme } from "@mantine/core"
-import pkg from "@uiw/codemirror-theme-xcode"
-const { xcodeLightInit, xcodeDarkInit } = pkg
+import * as xcodeTheme from "@uiw/codemirror-theme-xcode"
+const { xcodeLightInit, xcodeDarkInit } = xcodeTheme
 import CodeMirror from "@uiw/react-codemirror"
 import { ClientOnly } from "remix-utils/client-only"
 import CopyTextButton from "~/components/CopyTextButton"
