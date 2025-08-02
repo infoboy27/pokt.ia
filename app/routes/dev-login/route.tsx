@@ -19,7 +19,7 @@ export default function DevLoginRoute() {
         <h1>Development Login</h1>
         <p>Use any email and password to login in development mode.</p>
         
-        <Form method="post" action="/api/dev-login">
+        <Form method="post" action="/api/dev-login" onSubmit={() => console.log("Form submitted")}>
           <div style={{ marginBottom: "20px" }}>
             <label htmlFor="email" style={{ display: "block", marginBottom: "5px" }}>
               Email:

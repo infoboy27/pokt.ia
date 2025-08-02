@@ -2,12 +2,17 @@ import { json, redirect } from "@remix-run/node"
 import { createUserSession } from "~/utils/session.server"
 
 export async function action({ request }: { request: Request }) {
+  console.log("Dev login action called")
+  
   const formData = await request.formData()
   const email = formData.get("email") as string
   const password = formData.get("password") as string
 
+  console.log("Email:", email, "Password:", password)
+
   // Simple development authentication
   if (email && password) {
+    console.log("Creating user session...")
     // Create a mock user session
     const user = {
       id: "dev-user-123",
@@ -24,6 +29,7 @@ export async function action({ request }: { request: Request }) {
     })
   }
 
+  console.log("Invalid credentials")
   return json({ error: "Invalid credentials" }, { status: 400 })
 }
 
