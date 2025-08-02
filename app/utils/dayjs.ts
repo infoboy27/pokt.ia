@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import dayAdvancedFormat from "dayjs/plugin/advancedFormat"
+import dayAdvancedFormat from "dayjs/plugin/advancedFormat.js"
 import dayJsutcPlugin from "dayjs/plugin/utc.js"
 dayjs.extend(dayJsutcPlugin)
 dayjs.extend(dayAdvancedFormat)
