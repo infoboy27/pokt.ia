@@ -68,7 +68,7 @@ services:
     environment:
       # Development Environment
       - NODE_ENV=development
-      - PORT=3001
+      - PORT=3000
       
       # Session Configuration
       - SESSION_SECRET=dev_session_secret_for_cloud_development_only_123456789
@@ -78,7 +78,7 @@ services:
       - AUTH0_CLIENT_SECRET=dev_auth0_client_secret
       - AUTH0_DOMAIN=dev.auth0.com
       - AUTH0_AUDIENCE=dev_audience
-      - AUTH0_BASE_URL=http://localhost:3001
+      - AUTH0_BASE_URL=http://localhost:3000
       - AUTH0_SCOPE=openid profile email
       - AUTH0_SECRET=dev_auth0_secret_for_development
       - AUTH0_ISSUER_BASE_URL=https://dev.auth0.com
@@ -87,7 +87,7 @@ services:
       # Client Environment Variables
       - NOVU_APP_IDENTIFIER=dev_novu_app_identifier
       - PORTAL_API_URL=http://localhost:8080/v1/graphql
-      - RELAY_METER_API_URL=http://localhost:3001/mock-meter
+      - RELAY_METER_API_URL=http://localhost:3000/mock-meter
       - GOOGLE_ANALYTICS_ID=dev_analytics_id
       
       # Feature Flags - Disable features that require backend
@@ -116,7 +116,7 @@ services:
       - NOVU_APP_ID=dev_novu_app_id
       
       # Vercel KV Environment Variables (DISABLED for development)
-      - KV_REST_API_URL=http://localhost:3001/mock-kv
+      - KV_REST_API_URL=http://localhost:3000/mock-kv
       - KV_REST_API_TOKEN=dev_kv_token
       - KV_REST_API_READ_ONLY_TOKEN=dev_kv_readonly_token
       
@@ -132,14 +132,14 @@ services:
       
       # Monitoring and Analytics (DISABLED for development)
       - SENTRY_DSN=dev_sentry_dsn
-      - UPSTASH_REDIS_REST_URL=http://localhost:3001/mock-redis
+      - UPSTASH_REDIS_REST_URL=http://localhost:3000/mock-redis
       - UPSTASH_REDIS_REST_TOKEN=dev_redis_token
       - MAILJET_API_KEY=dev_mailjet_api_key
       - MAILJET_API_SECRET=dev_mailjet_api_secret
       
       # Backend Configuration (DISABLED for development)
-      - PORTAL_BACKEND_URL=http://localhost:3001/mock-backend
-      - PORTAL_GRAPHQL_URL=http://localhost:3001/mock-graphql
+      - PORTAL_BACKEND_URL=http://localhost:3000/mock-backend
+      - PORTAL_GRAPHQL_URL=http://localhost:3000/mock-graphql
       
     volumes:
       - ./public:/app/public
@@ -155,7 +155,7 @@ services:
     restart: unless-stopped
     command: ["pnpm", "run", "dev"]
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
