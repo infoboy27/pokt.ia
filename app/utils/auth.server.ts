@@ -160,3 +160,7 @@ async function handleStandardSignup(
 if (auth0Strategy) {
   authenticator.use(auth0Strategy)
 }
+
+// In development mode, we'll handle authentication through the development login
+// The development login creates a session with userId, and we'll handle the user object
+// in the requireUser function instead of relying on the authenticator

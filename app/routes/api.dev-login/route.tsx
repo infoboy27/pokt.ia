@@ -13,19 +13,28 @@ export async function action({ request }: { request: Request }) {
   // Simple development authentication
   if (email && password) {
     console.log("Creating user session...")
-    // Create a mock user session
+    // Create a development user session using existing database user
     const user = {
-      id: "dev-user-123",
+      id: "c5d518cb-aaf6-448e-8ab4-e001b215797f", // dev@pokt.ai user ID from database
       email: email,
-      name: "Development User",
-      portalUserID: "dev-portal-user-123",
+      name: "Developer User",
+      portalUserID: "dev-portal-user-456",
+      accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXYtYXV0aDAtaWQiLCJlbWFpbCI6ImRldkBwb2t0LmFpIiwiZXhwIjo5OTk5OTk5OTl9.signature", // Mock JWT with far future expiration
+      user: {
+        id: "c5d518cb-aaf6-448e-8ab4-e001b215797f",
+        email: email,
+        name: "Developer User",
+        portalUserID: "dev-portal-user-456",
+        auth0ID: "dev-auth0-id",
+        email_verified: true, // Required by requireUser
+      }
     }
 
     return createUserSession({
       request,
       userId: user.id,
       remember: false,
-      redirectTo: "/account/dev-account",
+      redirectTo: "/dev-success",
     })
   }
 

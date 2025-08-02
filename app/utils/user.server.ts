@@ -1,6 +1,7 @@
 import { redirect } from "@remix-run/node"
 import jwt_decode from "jwt-decode"
 import { authenticator, AuthUser } from "./auth.server"
+import { getSession } from "./session.server"
 import { initPortalClient } from "~/models/portal/portal.server"
 import { User, Account, RoleName } from "~/models/portal/sdk"
 
@@ -10,11 +11,33 @@ export enum Permissions {
 }
 
 export const requireUser = async (request: Request, defaultRedirect = "/") => {
+  const isDevelopment = process.env.NODE_ENV === "development"
+  
   let user = await authenticator.isAuthenticated(request)
 
+  // In development mode, check if we have a session with userId
+  if (!user && isDevelopment) {
+    const session = await getSession(request.headers.get("Cookie"))
+    const userId = session.get("userId")
+    
+    if (userId) {
+      // Create a development user object
+      user = {
+        accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXYtYXV0aDAtaWQiLCJlbWFpbCI6ImRldkBwb2t0LmFpIiwiZXhwIjo5OTk5OTk5OTl9.signature",
+        refreshToken: undefined,
+        user: {
+          id: userId,
+          email: "dev@pokt.ai",
+          name: "Developer User",
+          portalUserID: "dev-portal-user-456",
+          auth0ID: "dev-auth0-id",
+          email_verified: true,
+        }
+      }
+    }
+  }
+
   if (!user) {
-    // Check if we're in development mode
-    const isDevelopment = process.env.NODE_ENV === "development"
     if (isDevelopment) {
       throw redirect("/dev-login")
     }
@@ -42,16 +65,15 @@ export const requireUser = async (request: Request, defaultRedirect = "/") => {
     user = await authenticator.authenticate("auth0", request)
   }
 
-  const decode = jwt_decode<{
-    exp: number
-  }>(user.accessToken)
+  // Skip JWT validation in development mode
+  if (!isDevelopment) {
+    const decode = jwt_decode<{
+      exp: number
+    }>(user.accessToken)
 
-  if (Date.now() >= decode.exp * 1000) {
-    const isDevelopment = process.env.NODE_ENV === "development"
-    if (isDevelopment) {
-      throw await authenticator.logout(request, { redirectTo: "/dev-login" })
+    if (Date.now() >= decode.exp * 1000) {
+      throw await authenticator.logout(request, { redirectTo: "/api/auth/auth0" })
     }
-    throw await authenticator.logout(request, { redirectTo: "/api/auth/auth0" })
   }
 
   return user
@@ -119,6 +141,13 @@ export const getUserProfile = async (request: Request) => {
 }
 
 export const redirectToUserAccount = async (user: AuthUser) => {
+  const isDevelopment = process.env.NODE_ENV === "development"
+  
+  if (isDevelopment) {
+    // In development mode, redirect to a simple account page
+    return redirect("/account/dev-account")
+  }
+  
   const portal = initPortalClient({ token: user.accessToken })
   const accounts = await portal.getUserAccounts({ accepted: true })
   let account = accounts.getUserAccounts[0] as Partial<Account>

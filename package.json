@@ -12,7 +12,7 @@
     "build": "remix vite:build",
     "build:with-types": "run-s generate:types remix:build",
     "dev": "pnpm run remix:dev",
-    "start": "remix-serve ./build/server/*/index.js --host 0.0.0.0 --port 3000",
+    "start": "remix-serve ./build/server/index.js --host 0.0.0.0 --port 3000",
     "format": "prettier --write .",
     "generate:types": "graphql-codegen --config app/models/portal/codegen.config.yml",
     "generate:types:portal": "graphql-codegen -r dotenv/config --config ./app/models/portal/codegen.config.yml",
