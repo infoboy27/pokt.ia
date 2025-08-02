@@ -169,7 +169,7 @@ services:
 
 networks:
   default:
-    name: traefik-network
+    name: poktia
     external: true
 
 volumes:

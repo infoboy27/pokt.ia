@@ -18,7 +18,7 @@ providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
-    network: traefik-network
+    network: poktia
 
 certificatesResolvers:
   letsencrypt:

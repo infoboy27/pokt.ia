@@ -14,7 +14,7 @@ services:
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - ./acme.json:/acme.json
     networks:
-      - traefik-network
+      - poktia
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.dashboard.rule=Host(`traefik.pokt.ai`)"
@@ -23,5 +23,5 @@ services:
       - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
 
 networks:
-  traefik-network:
+  poktia:
     external: true 
