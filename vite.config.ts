@@ -14,9 +14,9 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   ssr: {
-    noExternal: ["@uiw/codemirror-theme-xcode", "@uiw/codemirror-themes"],
+    noExternal: ["@uiw/codemirror-theme-xcode", "@uiw/codemirror-themes", "dayjs"],
   },
   optimizeDeps: {
-    include: ["@uiw/codemirror-theme-xcode", "@uiw/codemirror-themes"],
+    include: ["@uiw/codemirror-theme-xcode", "@uiw/codemirror-themes", "dayjs"],
   },
 })
