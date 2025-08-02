@@ -19,7 +19,7 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "lint:fix": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
     "remix:build": "remix vite:build",
-    "remix:dev": "node ./node_modules/.bin/remix vite:dev",
+    "remix:dev": "node ./node_modules/@remix-run/dev/cli.js vite:dev",
     "test": "vitest",
     "test:unit:run": "vitest run --coverage",
     "test:unit:changed": "vitest run --coverage --changed",
