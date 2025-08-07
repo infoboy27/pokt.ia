@@ -49,7 +49,7 @@ export default function DevSuccessRoute() {
         
         <div style={{ marginTop: "30px" }}>
           <a 
-            href="/account" 
+            href="/account/dev-account" 
             style={{
               display: "inline-block",
               padding: "10px 20px",
@@ -60,7 +60,7 @@ export default function DevSuccessRoute() {
               marginRight: "10px"
             }}
           >
-            Go to Account
+            Go to Development Dashboard
           </a>
           <a 
             href="/" 
